@@ -1,5 +1,11 @@
 .header {
   width: 100%;
-  max-width: 1920px;
+  height: 60px;
+  position: fixed;
+  top: 0;
+
+  @media (min-width: 1440px) {
+    height: 80px;
+  }
 }
 

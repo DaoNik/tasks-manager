@@ -1,4 +1,6 @@
-/* You can add global styles to this file, and also import other style files */
+@import url('./normalize.scss');
+@import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600&display=swap');
+
 * {
   box-sizing: border-box;
 }
@@ -7,4 +9,26 @@
   margin: 0;
   background-color: rgb(46, 48, 50);
   color: whitesmoke;
+}
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  border: 0;
+  padding: 0;
+  white-space: nowrap;
+  clip-path: inset(100%);
+  clip: rect(0 0 0 0);
+  overflow: hidden;
 }

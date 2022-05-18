@@ -37,7 +37,9 @@
 
 // Контейнер
 .sidebar__box {
-  display: block;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   position: fixed;
   visibility: hidden;
 
@@ -119,7 +121,7 @@
 .sidebar__item {
   display: block;
   padding: 22px 24px;
-  color: rgb(255, 255, 255);
+  color: whitesmoke;
 
   font-family: 'Roboto', sans-serif;
   font-size: 26px;
@@ -145,7 +147,15 @@
 }
 
 .sidebar__more__info {
-  border-top: 1px solid rgb(88, 79, 79);
+  border-top: 1px solid rgba(255, 255, 255, 0.3);
+  justify-self: start;
+  // position: absolute;
+  // bottom: 20px;
+  // right: 20px;
+  // display: flex;
+  // flex-direction: column;
+  // align-items: center;
+  // width: 85%;
 }
 
 .sidebar__link_person {
