@@ -4,7 +4,10 @@
   row-gap: 20px;
   max-width: 800px;
   margin: 0 auto;
-  padding: 20px 0;
+  border: 1px solid #fff;
+  margin-top: 100px;
+  padding: 30px;
+  border-radius: 15px;
 }
 
 .form-issue__title {
@@ -33,9 +36,24 @@
   padding: 5px;
   border-radius: 5px;
 }
+.form-issue__buttons {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.form-issue__reset {
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  color: whitesmoke;
+  padding: 10px;
+  font-size: 100%;
+  line-height: 1.15;
+}
 
 .form-issue__submit {
-  align-self: flex-start;
+  // align-self: flex-start;
   border-radius: 10px;
   border: none;
   cursor: pointer;
@@ -45,5 +63,5 @@
 }
 
 .form-issue__submit:hover {
-  background: linear-gradient(180deg, #dd57cf,#c24eb6);
+  background: linear-gradient(180deg, #dd57cf, #c24eb6);
 }
