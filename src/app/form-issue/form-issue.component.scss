@@ -1,0 +1,49 @@
+.form-issue {
+  display: flex;
+  flex-direction: column;
+  row-gap: 20px;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px 0;
+}
+
+.form-issue__title {
+  margin: 0;
+}
+
+.form-issue__input {
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.form-issue__textarea {
+  border-radius: 5px;
+  padding: 5px;
+  min-height: 100px;
+  max-height: 200px;
+}
+
+.form-issue__multiple {
+  overflow: auto;
+  padding: 5px;
+  border-radius: 5px;
+}
+
+.form-issue__select {
+  padding: 5px;
+  border-radius: 5px;
+}
+
+.form-issue__submit {
+  align-self: flex-start;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  color: whitesmoke;
+  padding: 10px;
+  background: linear-gradient(90deg, #c24eb6, #8d4686, #680f69);
+}
+
+.form-issue__submit:hover {
+  background: linear-gradient(180deg, #dd57cf,#c24eb6);
+}

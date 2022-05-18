@@ -1,1 +1,23 @@
-<p>form-issue works!</p>
+<form class="form-issue">
+  <h2 class="form-issue__title">Опишите вашу проблему</h2>
+  <label class="form-issue__label"
+    >Введите название (от 2 до 100 символов):</label
+  >
+  <input class="form-issue__input" type="text" placeholder="ваше название" />
+  <label class="form-issue__label"
+    >Введите описание (от 4 до 1000 символов):</label
+  >
+  <textarea
+    class="form-issue__textarea"
+    placeholder="Опишите вашу проблему"
+  ></textarea>
+  <label class="form-issue__label">Введите теги:</label>
+  <select multiple class="form-issue__multiple" size="4">
+    <option *ngFor="let tag of tags">{{ tag }}</option>
+  </select>
+  <label class="form-issue__label">Выберите категорию:</label>
+  <select class="form-issue__select">
+    <option *ngFor="let tag of tags">{{ tag }}</option>
+  </select>
+  <button class="form-issue__submit" type="submit">Сообщить о проблеме</button>
+</form>
