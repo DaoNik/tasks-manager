@@ -13,7 +13,10 @@ export class ModalTaskComponent implements OnInit {
     title: [this.data],
     status: ['In progress'],
     assignee: this.fb.group([
-      {name: [''], avatar: ['']}
+      {
+        name: ['Giovanni Gorgio'], 
+        avatar: ['']
+      }
     ]),
     description: ['Короткое описание задачи'],
     text: ['Длинное описание задачи']
