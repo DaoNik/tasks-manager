@@ -17,16 +17,55 @@
     placeholder="Опишите вашу проблему"
     formControlName="description"
   ></textarea>
-  <label class="form-issue__label">Введите теги:</label>
+  <!-- <label class="form-issue__label">Введите теги:</label>
   <select multiple class="form-issue__multiple" size="4" formControlName="tags">
     <option *ngFor="let tag of tags">{{ tag }}</option>
-  </select>
+  </select> -->
+  <mat-form-field class="example-chip-list" appearance="fill">
+    <mat-label>Favorite Fruits</mat-label>
+    <mat-chip-list #chipList aria-label="Fruit selection">
+      <mat-chip *ngFor="let tag of tags" (removed)="remove(tag)">
+        {{ tag }}
+        <button matChipRemove>
+          <mat-icon>cancel</mat-icon>
+        </button>
+      </mat-chip>
+      <input
+        placeholder="Новый тег..."
+        #fruitInput
+        [formControl]="fruitCtrl"
+        [matAutocomplete]="auto"
+        [matChipInputFor]="chipList"
+      />
+    </mat-chip-list>
+    <mat-autocomplete
+      #auto="matAutocomplete"
+      (optionSelected)="selected($event)"
+    >
+      <mat-option *ngFor="let fruit of filteredFruits | async" [value]="fruit">
+        {{ fruit }}
+      </mat-option>
+    </mat-autocomplete>
+  </mat-form-field>
   <label class="form-issue__label">Выберите категорию:</label>
   <select class="form-issue__select" formControlName="category">
-    <option *ngFor="let tag of tags">{{ tag }}</option>
+    <option *ngFor="let tag of allTags">{{ tag }}</option>
   </select>
   <div class="form-issue__buttons">
-    <button mat-raised-button color="warn" class="form-issue__reset"  type="reset">Отчистить форму</button>
-    <button class="form-issue__submit" type="submit" [disabled]="issueForm.invalid">Сообщить о проблеме</button>
+    <button
+      mat-raised-button
+      color="warn"
+      class="form-issue__reset"
+      type="reset"
+    >
+      Отчистить форму
+    </button>
+    <button
+      class="form-issue__submit"
+      type="submit"
+      [disabled]="issueForm.invalid"
+    >
+      Сообщить о проблеме
+    </button>
   </div>
 </form>
