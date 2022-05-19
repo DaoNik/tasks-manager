@@ -53,12 +53,19 @@
 }
 
 .form-issue__submit {
-  // align-self: flex-start;
   border-radius: 10px;
   border: none;
   cursor: pointer;
   color: whitesmoke;
   padding: 10px;
+  background: linear-gradient(90deg, #c24eb6, #8d4686, #680f69);
+}
+
+.form-issue__submit:disabled {
+  cursor: auto;
+}
+
+.form-issue__submit:disabled:hover {
   background: linear-gradient(90deg, #c24eb6, #8d4686, #680f69);
 }
 
