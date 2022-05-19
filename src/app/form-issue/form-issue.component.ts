@@ -16,12 +16,11 @@ import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 export class FormIssueComponent implements OnInit {
   allTags: string[] = ['Frontend', 'Backend', 'Склад', 'Базы данных'];
   issueForm!: FormGroup;
-
-  fruitCtrl = new FormControl();
-  filteredFruits: Observable<string[]>;
+  tagCtrl = new FormControl();
+  filteredTags: Observable<string[]>;
   tags: string[] = [];
 
-  @ViewChild('fruitInput') fruitInput!: ElementRef<HTMLInputElement>;
+  @ViewChild('tagInput') tagInput!: ElementRef<HTMLInputElement>;
 
   constructor(private fb: FormBuilder) {
     this.issueForm = this.fb.group({
@@ -41,13 +40,13 @@ export class FormIssueComponent implements OnInit {
           Validators.maxLength(1000),
         ],
       ],
-      tags: ['', [Validators.required]],
-      category: ['', [Validators.required]],
+      tags: ['', [Validators.required, Validators.minLength(1)]],
+      category: ['', [Validators.required, Validators.minLength(1)]],
     });
-    this.filteredFruits = this.fruitCtrl.valueChanges.pipe(
+    this.filteredTags = this.tagCtrl.valueChanges.pipe(
       startWith(null),
-      map((fruit: string | null) =>
-        fruit ? this._filter(fruit) : this.allTags.slice()
+      map((tag: string | null) =>
+        tag ? this._filter(tag) : this.allTags.slice()
       )
     );
   }
@@ -56,6 +55,8 @@ export class FormIssueComponent implements OnInit {
 
   onSubmit() {
     console.log(this.issueForm.value);
+    this.issueForm.reset();
+    this.tags = [];
   }
 
   remove(fruit: string): void {
@@ -68,8 +69,9 @@ export class FormIssueComponent implements OnInit {
 
   selected($event: MatAutocompleteSelectedEvent): void {
     this.tags.push($event.option.viewValue);
-    this.fruitInput.nativeElement.value = '';
-    this.fruitCtrl.setValue(null);
+    this.issueForm.get('tags')?.setValue(this.tags);
+    this.tagInput.nativeElement.value = '';
+    this.tagCtrl.setValue(null);
   }
 
   private _filter(value: string): string[] {

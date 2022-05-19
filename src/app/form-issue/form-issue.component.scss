@@ -8,6 +8,7 @@
   margin-top: 100px;
   padding: 30px;
   border-radius: 15px;
+  z-index: -2;
 }
 
 .form-issue__title {
@@ -46,17 +47,18 @@
   border-radius: 10px;
   border: none;
   cursor: pointer;
-  color: whitesmoke;
+  color: rgb(245, 245, 245);
   padding: 10px;
   font-size: 100%;
   line-height: 1.15;
+  background-color: rgb(243, 43, 42);
 }
 
 .form-issue__submit {
   border-radius: 10px;
   border: none;
   cursor: pointer;
-  color: whitesmoke;
+  color: rgb(245, 245, 245);
   padding: 10px;
   background: linear-gradient(90deg, #c24eb6, #8d4686, #680f69);
 }
