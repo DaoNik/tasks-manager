@@ -4,6 +4,8 @@ import {
   moveItemInArray,
   transferArrayItem,
 } from '@angular/cdk/drag-drop';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { ITasksList } from '../interfaces/taskList.interface';
 
 @Component({
   selector: 'app-main',
@@ -11,11 +13,36 @@ import {
   styleUrls: ['./main.component.scss'],
 })
 export class MainComponent implements OnInit {
-  todo = ['Get to work', 'Pick up groceries', 'Go home', 'Fall asleep'];
+  todo: ITasksList = {
+    name: "To Do",
+    tasks: ['Get to work', 'Pick up groceries', 'Go home', 'Fall asleep']
+  };
 
-  done = ['Get up', 'Brush teeth', 'Take a shower', 'Check e-mail', 'Walk dog'];
+  inProgress: ITasksList = {
+    name: "In Progress",
+    tasks: ['Max goes to toilet', 'Max washes his ass', 'Dimon goes to walk on Naberezhnaya', 'We are kicked Karina into the mute voice channel']
+  };
 
-  constructor() {}
+  done: ITasksList = {
+    name: "Done",
+    tasks: ['Get up', 'Brush teeth', 'Take a shower', 'Check e-mail', 'Walk dog']
+  };
+
+  list: ITasksList[] = [this.todo, this.inProgress, this.done];
+
+  public form!: FormGroup;
+  public formColumns!: FormGroup;
+  isHidden: boolean = false;
+  isHiddenColumn: boolean = false;
+
+  constructor() {
+    this.form = new FormGroup({
+      toDoName: new FormControl("", [Validators.required, Validators.minLength(4), Validators.maxLength(40)])
+    })
+    this.formColumns = new FormGroup({
+      columnName: new FormControl("", [Validators.required, Validators.minLength(4), Validators.maxLength(15)])
+    })
+  }
 
   ngOnInit(): void {}
 
@@ -34,5 +61,20 @@ export class MainComponent implements OnInit {
         event.currentIndex
       );
     }
+  }
+
+  addToDo() {
+    this.isHidden = false;
+    this.list[0].tasks.unshift(this.form.value.toDoName)
+    this.form.value.toDoName = "";
+  }
+
+  addColumn() {
+    let newColumn: ITasksList = {
+      name: this.formColumns.value.columnName,
+      tasks: []
+    }
+    this.list.push(newColumn);
+    this.isHiddenColumn = false;
   }
 }
