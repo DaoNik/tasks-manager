@@ -4,7 +4,7 @@
   <div class="example-container" *ngFor="let column of list">
     
     <div class="example-toDo-header">
-      <button *ngIf="isHidden === false" (click)="isHidden = !isHidden">+</button>
+      <button *ngIf="isHidden === false && column.name === 'To Do'" (click)="isHidden = !isHidden">+</button>
       <h2>{{column.name}}</h2>
     </div>
 
