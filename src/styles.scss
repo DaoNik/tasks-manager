@@ -32,3 +32,9 @@ ul {
   clip: rect(0 0 0 0);
   overflow: hidden;
 }
+
+.modal-task-global {
+  mat-dialog-container {
+    padding: 0;
+  }
+}

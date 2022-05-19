@@ -4,6 +4,7 @@ import {
   moveItemInArray,
   transferArrayItem,
 } from '@angular/cdk/drag-drop';
+import { ModalTaskService } from '../modal-task/modal-task.service';
 
 @Component({
   selector: 'app-main',
@@ -15,7 +16,7 @@ export class MainComponent implements OnInit {
 
   done = ['Get up', 'Brush teeth', 'Take a shower', 'Check e-mail', 'Walk dog'];
 
-  constructor() {}
+  constructor(private modalServ: ModalTaskService) {}
 
   ngOnInit(): void {}
 
@@ -34,5 +35,9 @@ export class MainComponent implements OnInit {
         event.currentIndex
       );
     }
+  }
+
+  openTask(item: any) {
+    this.modalServ.openDialog(item)
   }
 }
