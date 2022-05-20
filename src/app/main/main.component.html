@@ -5,7 +5,10 @@
     
     <div class="example-toDo-header">
       <button *ngIf="isHidden === false && column.name === 'To Do'" (click)="isHidden = !isHidden">+</button>
-      <h2>{{column.name}}</h2>
+      <h2 *ngIf="!changer" (dblclick)="changer = !changer">{{column.name}}</h2>
+      <mat-form-field *ngIf="changer" appearance="fill">
+        <input matInput type="text" value={{column.name}} (keydown.enter)="changeName($event, column.name)">
+      </mat-form-field>
     </div>
 
     <form [formGroup]="form" *ngIf="isHidden && column.name === 'To Do'" (ngSubmit)="addToDo()">
