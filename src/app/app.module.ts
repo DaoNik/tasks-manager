@@ -29,6 +29,7 @@ import { SidebarComponent } from './header/sidebar/sidebar.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MainComponent } from './main/main.component';
 import { FormIssueComponent } from './form-issue/form-issue.component';
+import { ModalTaskComponent } from './modal-task/modal-task.component';
 
 @NgModule({
   declarations: [
@@ -37,6 +38,7 @@ import { FormIssueComponent } from './form-issue/form-issue.component';
     SidebarComponent,
     MainComponent,
     FormIssueComponent,
+    ModalTaskComponent,
   ],
   imports: [
     BrowserModule,

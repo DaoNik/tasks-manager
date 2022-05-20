@@ -4,6 +4,7 @@ import {
   moveItemInArray,
   transferArrayItem,
 } from '@angular/cdk/drag-drop';
+import { ModalTaskService } from '../modal-task/modal-task.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ITasksList } from '../interfaces/taskList.interface';
 
@@ -37,7 +38,7 @@ export class MainComponent implements OnInit {
   isHidden: boolean = false;
   isHiddenColumn: boolean = false;
 
-  constructor() {
+  constructor(private modalServ: ModalTaskService) {
     this.form = new FormGroup({
       toDoName: new FormControl("", [Validators.required, Validators.minLength(4), Validators.maxLength(40)])
     })
@@ -65,6 +66,9 @@ export class MainComponent implements OnInit {
     }
   }
 
+  openTask(item: any) {
+    this.modalServ.openDialog(item)
+  }
   addToDo() {
     this.isHidden = false;
     this.list[0].tasks.unshift(this.form.value.toDoName)
