@@ -12,12 +12,15 @@ export class ModalTaskComponent implements OnInit {
   mockTaskData = this.fb.group({
     title: [this.data],
     status: ['In progress'],
-    assignee: this.fb.group([
-      {
-        name: ['Giovanni Gorgio'], 
-        avatar: ['']
-      }
-    ]),
+    assignee: 
+      [[{
+        name: 'Giovanni Gorgio', 
+        avatar: ''
+      },{
+        name: 'Bruh Bruv', 
+        avatar: ''
+      }]]
+    ,
     description: ['Короткое описание задачи'],
     text: ['Длинное описание задачи']
   });
@@ -33,6 +36,6 @@ export class ModalTaskComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log(this.mockTaskData)
+    console.log(this.mockTaskData.value.assignee)
   }
 }

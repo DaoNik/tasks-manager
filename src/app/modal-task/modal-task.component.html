@@ -1,5 +1,5 @@
 <div class="modal-task">
-	<div class="modal-task__close">
+	<div class="modal-task__close" (click)="onNoClick()">
 		<mat-icon>close</mat-icon>
 	</div>
 	<div class="modal-task__title">
@@ -23,14 +23,14 @@
 	<div class="modal-task__assignee">
 		<div class="modal-task__assignee_line"></div>
 		<div class="person-wrapper">
-			<!-- <div class="modal-task__assigne_person" 
-			 *ngFor="let person of mockTaskData.value.as>
+			<div class="modal-task__assigne_person" 
+			 *ngFor="let person of mockTaskData.value.assignee">
 				<img class="modal-task__assigne_person_avatar" *ngIf="!!person.avatar" [src]="person.avatar" alt="user pic" />
 				<img class="modal-task__assigne_person_avatar" *ngIf="!person.avatar" src="assets/user-pic.jpeg" alt="user pic" />
 				<div class="modal-task__assigne_person_name">
 					{{person.name}}
 				</div>
-			</div> -->
+			</div>
 		</div>
 		
 	</div>

@@ -37,11 +37,7 @@
       class="example-list"
       (cdkDropListDropped)="drop($event)"
     >
-<<<<<<< HEAD
-      <div class="example-box" *ngFor="let item of done" cdkDrag (click)="openTask(item)">
-=======
       <div class="example-box" *ngFor="let item of inProgress" cdkDrag>
->>>>>>> 2b64209c66a685fdfc192400455372d2a0a383fc
         {{ item }}
       </div>
     </div>
