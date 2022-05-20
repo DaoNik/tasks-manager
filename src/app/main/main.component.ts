@@ -70,7 +70,7 @@ export class MainComponent implements OnInit {
   addToDo() {
     this.isHidden = false;
     this.list[0].tasks.unshift(this.form.value.toDoName)
-    this.form.value.toDoName = "";
+    this.form.reset();
   }
 
   addColumn() {

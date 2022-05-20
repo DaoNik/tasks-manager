@@ -1,7 +1,12 @@
 import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
-import { FormBuilder, Validators, FormGroup, FormControl } from '@angular/forms';
-import { Observable } from 'rxjs';
-import { map, startWith } from 'rxjs/operators';
+import {
+  FormBuilder,
+  Validators,
+  FormGroup,
+  FormControl,
+} from '@angular/forms';
+import { map, Observable, startWith } from 'rxjs';
+import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 
 @Component({
   selector: 'app-form-issue',
@@ -9,9 +14,13 @@ import { map, startWith } from 'rxjs/operators';
   styleUrls: ['./form-issue.component.scss'],
 })
 export class FormIssueComponent implements OnInit {
-  tags = ['Frontend', 'Backend', 'Склад', 'Базы данных'];
+  allTags: string[] = ['Frontend', 'Backend', 'Склад', 'Базы данных'];
   issueForm!: FormGroup;
+  tagCtrl = new FormControl();
+  filteredTags: Observable<string[]>;
+  tags: string[] = [];
 
+  @ViewChild('tagInput') tagInput!: ElementRef<HTMLInputElement>;
 
   constructor(private fb: FormBuilder) {
     this.issueForm = this.fb.group({
@@ -31,16 +40,45 @@ export class FormIssueComponent implements OnInit {
           Validators.maxLength(1000),
         ],
       ],
-      tags: ['', [Validators.required]],
-      category: ['', [Validators.required]],
+      tags: ['', [Validators.required, Validators.minLength(1)]],
+      category: ['', [Validators.required, Validators.minLength(1)]],
     });
+    this.filteredTags = this.tagCtrl.valueChanges.pipe(
+      startWith(null),
+      map((tag: string | null) =>
+        tag ? this._filter(tag) : this.allTags.slice()
+      )
+    );
   }
 
-  ngOnInit(): void {
-
-  }
+  ngOnInit(): void {}
 
   onSubmit() {
     console.log(this.issueForm.value);
+    this.issueForm.reset();
+    this.tags = [];
+  }
+
+  remove(fruit: string): void {
+    const index = this.tags.indexOf(fruit);
+
+    if (index >= 0) {
+      this.tags.splice(index, 1);
+    }
+  }
+
+  selected($event: MatAutocompleteSelectedEvent): void {
+    this.tags.push($event.option.viewValue);
+    this.issueForm.get('tags')?.setValue(this.tags);
+    this.tagInput.nativeElement.value = '';
+    this.tagCtrl.setValue(null);
+  }
+
+  private _filter(value: string): string[] {
+    const filterValue = value.toLowerCase();
+
+    return this.allTags.filter((tag) =>
+      tag.toLowerCase().includes(filterValue)
+    );
   }
 }
