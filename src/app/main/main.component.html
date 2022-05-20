@@ -22,7 +22,7 @@
       class="example-list"
       (cdkDropListDropped)="drop($event)"
     >
-      <div class="example-box" *ngFor="let item of column.tasks" cdkDrag>
+      <div class="example-box" *ngFor="let item of column.tasks" cdkDrag (click)="openTask(item)">
         {{ item }}
       </div>
     </div>

@@ -33,6 +33,12 @@ ul {
   overflow: hidden;
 }
 
+.modal-task-global {
+  mat-dialog-container {
+    padding: 0;
+  }
+}
+
 .mat-form-field-flex {
   background: rgb(245, 245, 245) !important;
 }
