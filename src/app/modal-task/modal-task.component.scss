@@ -2,10 +2,11 @@
 	display: grid;
 	position: relative;
 	grid-template-columns: 70% 30%;
-	grid-template-rows: repeat(4, 1fr);
+	grid-template-rows: auto 30px 90px 300px;
 	grid-column-gap: 0px;
 	grid-row-gap: 0px;
 	width: 100%;
+	height: 500px;
 
 	.modal-task__close {
 		position: absolute;
@@ -30,7 +31,7 @@
 
 	.modal-task__title { 
 		grid-area: 1 / 1 / 2 / 3;
-
+		margin-bottom: 0;
 		padding: 10px;
 		// background: blue;
 		display: flex;
@@ -72,10 +73,50 @@
 		// background: orange;
 		text-align: center;
 
+		.modal-task__text_wrp {
+			display: flex;
+			flex-direction: row;
+		}
+
+		.modal_task__text_icon {
+			width: 40px;
+		}
+
 		.modal-task__text_input {
-			margin: 0 auto;
+			margin: 0 auto 0 0 ;
+			padding-left: 5px;
 			width: 90%;
-			height: 80%;
+			height: 24px;
+			border: none;
+
+			&:focus {
+				border: none;
+				box-shadow: none;
+			}
+		}
+
+		.modal-task__text_input_new {
+			margin: 0 auto 0 0;
+			padding-left: 5px;
+			width: 90%;
+			height: 24px;
+			border: none;
+			border-bottom: 1px solid;
+		}
+
+		.modal-task__text_input_disabled {
+			margin: 0 auto 0 0;
+			width: 90%;
+			height: 24px;
+			// background-color: rgb(175, 175, 175);
+			text-align: left;
+			padding: 3px 0 0 5px;
+		}
+
+		.modal-task__text_input_btns {
+			margin: 5px auto 0;
+			text-align: left;
+			width: 90%;
 		}
 	}
 	

@@ -14,11 +14,76 @@
 		<mat-icon>description</mat-icon>
 		<p>{{mockTaskData.value.description}}</p>
 	</div>
-	<div class="modal-task__text">
-		<input class='modal-task__text_input' 
+	<div class="modal-task__text" [formGroup]="mockTaskData">
+		<div formGroupName="text"
+			 class="modal-task__text_wrp"
+			 *ngFor="let item of mockTaskData.value.text; let i = index">
+			<mat-icon [matMenuTriggerFor]="menu">more_vert</mat-icon>
+			<mat-menu #menu="matMenu">
+				<button mat-menu-item 
+						*ngFor="let option of typeOptions"
+						(click)="changeType(option, i)"
+						[ngStyle]="{'color': item.type == option.type ? 'orange' : 'black'}">
+							{{option.name}}
+						</button>
+			</mat-menu>
+			<div class="modal_task__text_icon">
+				<div *ngIf="item.type.length <= 0">
+					<mat-icon>description</mat-icon>
+				</div>
+				<div *ngIf="item.type == 'todo'"
+					 (click)="item.value = item.value == 'true' ? 'false' : 'true'">
+					<mat-icon *ngIf="item.value == 'true'">check_box</mat-icon>
+					<mat-icon *ngIf="item.value == 'false'">check_box_outline_blank</mat-icon>
+				</div>
+				<div *ngIf="item.type == 'ul'">
+					●
+				</div>
+			</div>
+			
+			<div *ngIf="!inputTrigger"
+				 (click)="inputTrigger = !inputTrigger"
+				 class='modal-task__text_input_disabled'>
+				{{item.text}}
+			</div>
+			<input class='modal-task__text_input' 
 			   type='text'
-			   value={{mockTaskData.value.text}} 
-		>
+			   value={{item.text}} 
+			   *ngIf="inputTrigger"
+			   name="inputTask"
+			   (keyup.enter)="addText($event, i)"
+			>
+		</div>
+		<div class="modal-task__text_wrp">
+			<mat-icon [matMenuTriggerFor]="addMenu">more_vert</mat-icon>
+			<mat-menu #addMenu="matMenu">
+				<button mat-menu-item 
+						*ngFor="let option of typeOptions"
+						(click)="changeType(option)"
+						[ngStyle]="{'color': createOption.type == option.type ? 'orange' : 'black'}">
+							{{option.name}}
+						</button>
+			</mat-menu>
+			<div class="modal_task__text_icon">
+				<mat-icon>add</mat-icon>
+			</div>
+			<input class='modal-task__text_input_new' 
+			   	   type='text'
+			       name="inputTask"
+			       (keyup.enter)="addText($event, -1)"
+			>
+		</div>
+		
+		<!-- <div class='modal-task__text_input_btns'
+			 *ngIf="inputTrigger">
+			<button mat-raised-button 
+					color="primary" 
+					(click)="inputTrigger = !inputTrigger"
+			>
+				Сохранить
+			</button>
+		</div> -->
+		
 	</div>
 	<div class="modal-task__assignee">
 		<div class="modal-task__assignee_line"></div>
