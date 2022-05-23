@@ -97,6 +97,10 @@ export class ModalTaskComponent implements OnInit {
     }
   }
 
+  deleteString(i: number) {
+    this.mockTaskData.value.text.splice(i, 1);
+  }
+
   ngOnInit(): void {
     console.log(this.mockTaskData.value.assignee)
   }

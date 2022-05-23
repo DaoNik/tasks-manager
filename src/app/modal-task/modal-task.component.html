@@ -60,6 +60,7 @@
 			   *ngIf="inputTrigger"
 			   name="inputTask"
 			   (keyup.enter)="addText($event, i)"
+			   (keyup.Delete)="deleteString(i)"
 			>
 		</div>
 		<div class="modal-task__text_wrp">
