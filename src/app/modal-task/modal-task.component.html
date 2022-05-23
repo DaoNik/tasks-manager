@@ -2,9 +2,14 @@
 	<div class="modal-task__close" (click)="onNoClick()">
 		<mat-icon>close</mat-icon>
 	</div>
-	<div class="modal-task__title">
+	<div class="modal-task__title" [formGroup]="mockTaskData">
 		<mat-icon>task</mat-icon>
-		<h2>{{mockTaskData.value.title}}</h2>
+		<h2 *ngIf="!headerTrigger"
+			(click)="headerTrigger = !headerTrigger">{{mockTaskData.value.title}}</h2>
+		<input *ngIf="headerTrigger"
+			   formControlName="title"
+			   (keyup.enter)="headerTrigger = !headerTrigger"
+			   >
 	</div>
 	<div class="modal-task__status">
 		<mat-icon>checklist</mat-icon>
@@ -37,9 +42,10 @@
 			</mat-menu>
 			<div class="modal_task__text_icon">
 				<div *ngIf="item.type.length <= 0">
-					<mat-icon>description</mat-icon>
+					<!-- <mat-icon>description</mat-icon> -->
 				</div>
 				<div *ngIf="item.type == 'todo'"
+					 class="todo"
 					 (click)="item.value = item.value == 'true' ? 'false' : 'true'">
 					<mat-icon *ngIf="item.value == 'true'">check_box</mat-icon>
 					<mat-icon *ngIf="item.value == 'false'">check_box_outline_blank</mat-icon>

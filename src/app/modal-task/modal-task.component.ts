@@ -50,6 +50,7 @@ export class ModalTaskComponent implements OnInit {
     value: ''
   }]
   inputTrigger = false;
+  headerTrigger = false;
   createOption = {
     name: 'text',
     type: '',
@@ -84,6 +85,7 @@ export class ModalTaskComponent implements OnInit {
     } else {
       this.mockTaskData.value.text[num].text = e.target.value;
     }
+    this.inputTrigger = false;
     console.log(this.mockTaskData.value.text)
   }
 
