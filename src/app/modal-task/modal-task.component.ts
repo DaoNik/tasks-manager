@@ -1,8 +1,9 @@
 import { Component, Inject, OnInit, ViewChild } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
-import { ITaskData } from './modal-task-interface';
-import { FormBuilder } from '@angular/forms';
+import { IAssignee, ITaskData } from './modal-task-interface';
+import { FormBuilder, FormControl } from '@angular/forms';
 import { MatMenuTrigger } from '@angular/material/menu';
+import { map, Observable } from 'rxjs';
 
 @Component({
   selector: 'app-modal-task',
@@ -16,9 +17,11 @@ export class ModalTaskComponent implements OnInit {
     assignee: 
       [[{
         name: 'Giovanni Gorgio', 
+        id: 1,
         avatar: ''
       },{
         name: 'Bruh Bruv', 
+        id: 2,
         avatar: ''
       }]]
     ,
@@ -34,6 +37,25 @@ export class ModalTaskComponent implements OnInit {
     }]]
   });
   mockStatusVariants = ['Todo', 'In progress', 'Done']
+  mockUsers = [
+    {
+      name: 'Giovanni Gorgio', 
+      id: 1,
+      avatar: ''
+    },{
+      name: 'Bruh Bruv', 
+      id: 2,
+      avatar: ''
+    },{
+      name: 'Another User', 
+      id: 3,
+      avatar: ''
+    },{
+      name: 'Darth Vader', 
+      id: 4,
+      avatar: ''
+    }
+  ]
   typeOptions = [{
     name: 'text',
     type: '',
@@ -55,7 +77,9 @@ export class ModalTaskComponent implements OnInit {
     name: 'text',
     type: '',
     value: ''
-  }
+  };
+  searchAssigneeQuery = new FormControl(['']);
+  filteredOptions!: Observable<IAssignee[]>;
 
   constructor(
     public dialogRef: MatDialogRef<ModalTaskComponent>,
@@ -104,6 +128,17 @@ export class ModalTaskComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log(this.mockTaskData.value.assignee)
+    this.filteredOptions = this.searchAssigneeQuery.valueChanges.pipe(
+      map(value => this._filter(value)),
+    );
+  }
+
+  private _filter(value: string): IAssignee[] {
+    const filterValue = value.toLowerCase();
+
+    return this.mockUsers.filter(user => (
+      user.name.toLowerCase().includes(filterValue) && 
+      !this.mockTaskData.value.assignee.includes(user)
+    ));
   }
 }

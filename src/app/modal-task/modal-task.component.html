@@ -111,6 +111,20 @@
 					{{person.name}}
 				</div>
 			</div>
+			<div class="modal-task__assigne_add">
+				<mat-form-field class="example-full-width" appearance="fill">
+					<mat-label>Number</mat-label>
+					<input type="text"
+						   matInput
+						   [formControl]="searchAssigneeQuery"
+						   [matAutocomplete]="auto">
+					<mat-autocomplete #auto="matAutocomplete">
+					  <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+						{{option.name}}
+					  </mat-option>
+					</mat-autocomplete>
+				  </mat-form-field>
+			</div>
 		</div>
 		
 	</div>
