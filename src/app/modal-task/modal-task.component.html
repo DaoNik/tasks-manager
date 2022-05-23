@@ -67,7 +67,7 @@
 			<mat-menu #addMenu="matMenu">
 				<button mat-menu-item 
 						*ngFor="let option of typeOptions"
-						(click)="changeType(option)"
+						(click)="changeType(option, -1)"
 						[ngStyle]="{'color': createOption.type == option.type ? 'orange' : 'black'}">
 							{{option.name}}
 						</button>

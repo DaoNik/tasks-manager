@@ -87,15 +87,14 @@ export class ModalTaskComponent implements OnInit {
     console.log(this.mockTaskData.value.text)
   }
 
-  changeType(option?: any, index?: number) {
-    if (index && option){
-      this.mockTaskData.value.text[index].type = option.type;
-      this.mockTaskData.value.text[index].value = option.value;
+  changeType(option: any, i: number) {
+    if (i >= 0){
+      this.mockTaskData.value.text[i].type = option.type;
+      this.mockTaskData.value.text[i].value = option.value;
     } else {
       this.createOption.type = option.type;
       this.createOption.value = option.value;
     }
-    
   }
 
   ngOnInit(): void {
