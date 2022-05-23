@@ -33,6 +33,7 @@ export class ModalTaskComponent implements OnInit {
       value: 'true'
     }]]
   });
+  mockStatusVariants = ['Todo', 'In progress', 'Done']
   typeOptions = [{
     name: 'text',
     type: '',

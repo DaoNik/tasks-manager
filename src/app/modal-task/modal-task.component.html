@@ -8,7 +8,15 @@
 	</div>
 	<div class="modal-task__status">
 		<mat-icon>checklist</mat-icon>
-		<p>Статус: {{mockTaskData.value.status}}</p>
+		<p [matMenuTriggerFor]="statusMenu">Статус: {{mockTaskData.value.status}}</p>
+		<mat-menu #statusMenu="matMenu">
+			<button mat-menu-item 
+					*ngFor="let status of mockStatusVariants"
+					(click)="mockTaskData.value.status = status"
+					[ngStyle]="{'color': mockTaskData.value.status == status ? 'orange' : 'black'}">
+						{{status}}
+					</button>
+		</mat-menu>
 	</div>
 	<div class="modal-task__description">
 		<mat-icon>description</mat-icon>
