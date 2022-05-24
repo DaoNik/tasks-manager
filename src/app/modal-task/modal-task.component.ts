@@ -14,10 +14,10 @@ export class ModalTaskComponent implements OnInit {
     status: ['In progress'],
     assignee: 
       [[{
-        name: 'Giovanni Gorgio', 
+        name: 'Giorgio Armani', 
         avatar: ''
       },{
-        name: 'Bruh Bruv', 
+        name: 'Dolce Gabbana', 
         avatar: ''
       }]]
     ,
@@ -37,5 +37,6 @@ export class ModalTaskComponent implements OnInit {
 
   ngOnInit(): void {
     console.log(this.mockTaskData.value.assignee)
+    console.log(this.data)
   }
 }

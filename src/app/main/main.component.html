@@ -4,7 +4,7 @@
   <div class="example-container" *ngFor="let column of list">
     
     <div class="example-toDo-header">
-      <button *ngIf="isHidden === false && column.name === 'To Do'" (click)="isHidden = !isHidden">+</button>
+      <!-- <button *ngIf="isHidden === false && column.name === 'To Do'" (click)="isHidden = !isHidden">+</button> -->
       <h2 *ngIf="!changer" (dblclick)="changer = !changer">{{column.name}}</h2>
       <mat-form-field *ngIf="changer" appearance="fill">
         <input matInput type="text" value={{column.name}} (keydown.enter)="changeName($event, column.name)">
@@ -25,8 +25,9 @@
       class="example-list"
       (cdkDropListDropped)="drop($event)"
     >
-      <div class="example-box" *ngFor="let item of column.tasks" cdkDrag (click)="openTask(item)">
-        {{ item }}
+      <div class="example-box" *ngFor="let item of column.tasks" cdkDrag>
+        <button *ngIf="isHidden === false" (click)="isHidden = !isHidden">+</button>
+        <div (click)="openTask(item)">{{ item }}</div>
       </div>
     </div>
   </div>

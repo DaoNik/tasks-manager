@@ -24,6 +24,33 @@
   border-radius: 4px;
   overflow: hidden;
   display: block;
+
+  button {
+    margin-right: 20px;
+    border: none;
+    background: none;
+    display: none;
+  }
+
+  button:hover {
+    font-size: 26px;
+    font-weight: 400;
+    color: black;
+  }
+}
+
+.example-box:hover {
+  button {
+    display: block;
+    font-weight: 200;
+    font-size: 20px;
+    color: black;
+  }
+
+  button:hover {
+    font-size: 26px;
+    font-weight: 400;
+  }
 }
 
 .example-box {
@@ -33,7 +60,7 @@
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: space-between;
+  // justify-content: space-between;
   box-sizing: border-box;
   cursor: pointer;
   background: white;
@@ -66,21 +93,6 @@
 
 .example-toDo-header {
   display: flex;
-
-  button {
-    margin-right: 20px;
-    border: none;
-    background: none;
-    color: white;
-    font-weight: 200;
-    font-size: 20px;
-  }
-
-  button:hover {
-    font-size: 26px;
-    font-weight: 400;
-    color: aquamarine;
-  }
 }
 
 .example-createToDo {
